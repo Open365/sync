@@ -21,9 +21,9 @@ var EyeCrypt = require('eyeos-crypt').EyeCrypt;
 var settings = require('./settings');
 var log2out = require('log2out');
 
-var UserEventsMarshaller = function() {
+var UserEventsMarshaller = function(eyeCrypt) {
 	this.settings = settings;
-    this.userCrypt = new EyeCrypt(this.settings.crypto);
+    this.userCrypt = eyeCrypt || new EyeCrypt(this.settings.crypto);
 	this.logger = log2out.getLogger('UserEventsMarshaller');
 };
 
