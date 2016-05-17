@@ -19,15 +19,18 @@
 
 var assert = require('chai').assert;
 var UserEventsMarshaller = require('../lib/UserEventsMarshaller');
+var EyeCrypt = require('eyeos-crypt').EyeCrypt;
 
 suite('#UserEventsMarshaller', function() {
 	var sut;
-	var encPassword, fakeCard;
+	var encPassword, fakeCard, eyeCrypt, keysPath;
 
 	setup(function() {
-		encPassword = "KpSxR+JJwbZxb0RRj0ZNFNvb+K4kLaevc3iEdQstSB1PtiROVjrUtTzbWOhWtkjkLALo67Xdd1ptIOnM4mSd4GmdOcLheLeQsbKTc+3hbirm8FdZJgH5ahTXx/rLvHUIoLCC75L2u0rAuYZUUH2OnvBr2rzuCFvXFaiskhQs6GDM542xtB83HiRdcCLsC5utWllTq5NzJmpcr9Fk9M9MvLOUu5XWMdGjLz/MENRGfx1AmsuoyDio9bs1bwz0wI7hLt/qBONQPevE6blEf1OZWaPAeQPQa8d0KFGjXamd3COUPxLjz7m5zYu+AzQrdas55gevN6EpsEtrgXov4e5vnvjLtcoQ3RRaBC+j3GDIxLN6SyESEznzT+lQehO3DOg+YFYir9LR2Kk5KBCdiQMU7Iur2j+CaTnGeoXgQkHVxeY04vlJm9TCA+iVkipZ8dJv2tnNw+rB7uvqDLIjJb3OaOxrbUBPbCUZUYx4P2uyl6QQdHdf/+Uy1KQh7njN2s55BbXn0xDNVDtp7Vfyndv3poOWsMSwTDy8zLhRjeHPopN6K1DuQJ/fiwNm9/hs7o/59PdKFT/T82AkmgKjWarEsNQeRY6zdDIn2mE095kmE1N8p70WU7lXxuct5aDRpMoBUWBhdn0bBsNs2spUmBBSF9MqWscLOhQgtqsO6rX+raA=";
+        encPassword = "XsXoElhUIGLhGODEBjob/jsZrf0+lkCRw5UEzUkAQ9SCvN0ZT3b2Nc3vbkcHlJhgew864CsRH4zu2cD9dzEEHLzvVVZ/A7P5ETT7OaqOaB4eegPJItkmLrTb+mevOsznXBJFoX1sYsIPkI1o3U30/wmaSi21Zr0hZ01Z9Gac+Dk=";
 		fakeCard = 'aCard';
-		sut = new UserEventsMarshaller();
+        keysPath = __dirname + '/rsa-keys/';
+        eyeCrypt = new EyeCrypt({type:'rsa', rsa:{private: keysPath + 'key.pem', public: keysPath + 'key.pub'}});
+		sut = new UserEventsMarshaller(eyeCrypt);
 	});
 
 	test('login should give the correct parameters', function(done) {
