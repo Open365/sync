@@ -1,6 +1,6 @@
 {
   "name": "sync",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Service to request containers for the user",
   "main": "eyeos-sync.js",
   "author": "eyeOS",
