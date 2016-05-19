@@ -11,7 +11,7 @@ CMD eyeos-run-server --serf /var/service/src/eyeos-sync.js
 COPY . ${InstallationDir}
 
 RUN apk update && apk add --no-cache curl make gcc g++ git python dnsmasq bash && \
-    npm install --verbose && \
+    npm install --verbose --production && \
     npm install -g eyeos-run-server && \
     npm install -g eyeos-tags-to-dns && \
     npm cache clean && \
