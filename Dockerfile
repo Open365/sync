@@ -1,4 +1,4 @@
-FROM alpine6-node-base
+FROM docker-registry.eyeosbcn.com/alpine6-node-base
 
 ENV WHATAMI sync
 
