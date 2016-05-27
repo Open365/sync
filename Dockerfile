@@ -10,8 +10,9 @@ CMD eyeos-run-server --serf /var/service/src/eyeos-sync.js
 
 COPY . ${InstallationDir}
 
-RUN apk update && apk add --no-cache curl make gcc g++ git python && \
+RUN apk update && \
+    /scripts-base/installExtraBuild.sh && \
     npm install --verbose --production && \
     npm cache clean && \
-    apk del curl make gcc g++ git python && \
+    /scripts-base/deleteExtraBuild.sh && \
     rm -r /etc/ssl /var/cache/apk/* /tmp/*
