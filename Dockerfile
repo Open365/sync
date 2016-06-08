@@ -8,7 +8,6 @@ WORKDIR ${InstallationDir}
 
 CMD eyeos-run-server --serf /var/service/src/eyeos-sync.js
 
-COPY alpine-*.list /var/service/
 COPY . ${InstallationDir}
 
 RUN apk update && \
