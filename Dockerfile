@@ -11,8 +11,8 @@ CMD eyeos-run-server --serf /var/service/src/eyeos-sync.js
 COPY . ${InstallationDir}
 
 RUN apk update && \
-    /scripts-base/installExtraBuild.sh && \
+    /scripts-base/buildDependencies.sh --production --install && \
     npm install --verbose --production && \
     npm cache clean && \
-    /scripts-base/deleteExtraBuild.sh && \
+    /scripts-base/buildDependencies.sh --production --purgue && \
     rm -r /etc/ssl /var/cache/apk/* /tmp/*
